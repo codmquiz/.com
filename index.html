@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Hard Call of Duty: Mobile quiz. 10 questions, score out of 100.">
+<title>CODM Hard Quiz</title>
+<style>
+:root{--bg:#0a0a0b;--panel:#131315;--line:#2a2a2e;--acc:#ffb400;--acc2:#ff7a00;--ok:#36d17a;--bad:#ff4545;--tx:#f2f2f2;--mut:#8d8d95}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Bahnschrift","Arial Narrow","Roboto Condensed",Impact,Arial,sans-serif;background:var(--bg) repeating-linear-gradient(135deg,transparent 0 14px,#ffffff05 14px 15px);color:var(--tx);min-height:100vh;display:flex;flex-direction:column;text-transform:uppercase;letter-spacing:.5px}
+header{display:flex;align-items:center;gap:12px;padding:14px 20px;background:#000;border-bottom:3px solid var(--acc)}
+.logo{font-weight:900;font-size:1.25rem;line-height:1;letter-spacing:2px}
+.logo small{display:block;font-size:.6rem;color:var(--acc);letter-spacing:4px;margin-top:3px}
+.tag{margin-left:auto;font-size:.75rem;color:#000;background:var(--acc);padding:4px 10px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);font-weight:800}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:18px}
+.card{width:100%;max-width:620px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--acc);padding:22px;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px))}
+h1{font-size:2.1rem;font-weight:900;line-height:1.05}
+h1 span{color:var(--acc)}
+h2{font-size:1.15rem;font-weight:700;margin:14px 0 4px;line-height:1.3}
+.sub{color:var(--mut);margin:10px 0 18px;font-size:.9rem}
+.stats{display:flex;gap:10px;margin:0 0 18px}
+.stats div{flex:1;background:#0c0c0e;border:1px solid var(--line);padding:10px;text-align:center;font-size:.75rem;color:var(--mut)}
+.stats b{display:block;font-size:1.4rem;color:var(--acc)}
+.top{display:flex;justify-content:space-between;font-size:.85rem;color:var(--mut);font-weight:700}
+.top b{color:var(--acc)}
+.bar{height:5px;background:#26262a;margin:8px 0 12px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));transition:width .3s}
+.pic{width:100%;height:190px;object-fit:cover;display:block;background:#0c0c0e;border:1px solid var(--line);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}
+.opts{display:grid;gap:8px;margin-top:12px}
+.opt{font:inherit;text-transform:uppercase;letter-spacing:.5px;font-weight:700;cursor:pointer;color:var(--tx);background:#0c0c0e;border:1px solid var(--line);border-left:4px solid #3a3a40;padding:13px 14px;text-align:left;transition:.15s}
+.opt:hover:not(:disabled){border-left-color:var(--acc);background:#18181b;transform:translateX(3px)}
+.opt.ok{border-color:var(--ok);background:#0f2a1b}
+.opt.bad{border-color:var(--bad);background:#2d1212}
+.btn{font:inherit;font-weight:900;text-transform:uppercase;letter-spacing:2px;cursor:pointer;border:0;color:#000;background:linear-gradient(90deg,var(--acc),var(--acc2));padding:14px 38px;display:block;margin:20px auto 0;clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);font-size:1rem}
+.btn:hover{filter:brightness(1.12)}
+.big{font-size:4.2rem;font-weight:900;text-align:center;color:var(--acc);line-height:1;margin-top:10px}
+.big small{font-size:1.6rem;color:var(--mut)}
+.lvl{text-align:center;font-size:1.4rem;font-weight:900;margin:8px 0}
+.rev{max-height:210px;overflow:auto;margin-top:12px;font-size:.8rem;color:var(--mut);border-top:1px solid var(--line)}
+.rev div{padding:7px 0;border-bottom:1px solid var(--line)}
+.rev b{color:var(--ok)}
+.rev .x{color:var(--bad);font-weight:800}
+.rev .v{color:var(--ok);font-weight:800}
+footer{text-align:center;padding:16px;font-size:.8rem;color:var(--mut);background:#000;border-top:3px solid var(--acc);line-height:1.7}
+footer b{color:var(--acc)}
+.noob{display:none;text-align:center;font-size:3.4rem;font-weight:900;color:var(--bad);letter-spacing:6px;margin:6px 0;text-shadow:0 0 18px #ff454588;animation:shake .5s 3,pulse 1s infinite alternate}
+.noob small{display:block;font-size:.8rem;color:var(--mut);letter-spacing:2px;text-shadow:none}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes pulse{to{opacity:.7}}
+.hide{display:none}
+@media(max-width:480px){h1{font-size:1.6rem}.pic{height:150px}.big{font-size:3.2rem}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">CALL OF DUTY<small>MOBILE QUIZ</small></div>
+ <span class="tag">HARD MODE</span>
+</header>
+
+<main>
+ <section class="card" id="start">
+  <h1>PROVE YOUR <span>CODM</span> KNOWLEDGE</h1>
+  <p class="sub">Classic and new Call of Duty: Mobile knowledge. No second chances.</p>
+  <div class="stats"><div><b>10</b>Questions</div><div><b>20s</b>Per Question</div><div><b>100</b>Max Score</div></div>
+  <button class="btn" id="go">Deploy</button>
+ </section>
+
+ <section class="card hide" id="quiz">
+  <div class="top"><span id="no"></span><span id="tm"></span><span id="sc"></span></div>
+  <div class="bar"><i id="pg"></i></div>
+  <img class="pic" id="img" alt="">
+  <h2 id="q"></h2>
+  <div class="opts" id="opts"></div>
+  <button class="btn hide" id="nx">Next</button>
+ </section>
+
+ <section class="card hide" id="end">
+  <h1>MISSION <span>REPORT</span></h1>
+  <div class="big"><span id="fs"></span><small>/100</small></div>
+  <div class="noob" id="noob">NOOB<small>Score below 50. Train harder and try again.</small></div>
+  <div class="lvl" id="lv"></div>
+  <p class="sub" id="ds" style="text-align:center"></p>
+  <div class="rev" id="rv"></div>
+  <button class="btn" onclick="location.reload()">Play Again</button>
+ </section>
+</main>
+
+<footer>
+ A <b>Uobitechnology</b> Project by <b>Ubaid Ur Rehman</b><br>
+ CODM ID: <b style="text-transform:none">ODGxByTS</b><br>
+ Captain of <b>Odin's GuardianX eSports</b>
+</footer>
+
+<script>
+/* Add real game screenshots in /images as q1.jpg ... q10.jpg. A tactical placeholder shows if one is missing. */
+const Q=[
+{q:"Which studio develops Call of Duty: Mobile?",o:["TiMi Studio Group","Treyarch","Infinity Ward","Raven Software"],a:0},
+{q:"CODM was globally released on which date?",o:["1 October 2019","1 January 2019","15 March 2020","20 August 2018"],a:0},
+{q:"In Ranked MP, which rank sits directly below Legendary?",o:["Grandmaster","Master","Elite","Pro"],a:0},
+{q:"Which Battle Royale class has the Sensor Dart skill?",o:["Scout","Defender","Medic","Mechanic"],a:0},
+{q:"Which Battle Royale class uses the Grappling Hook skill?",o:["Airborne","Clown","Scout","Medic"],a:0},
+{q:"The DLQ33 belongs to which weapon category?",o:["Sniper Rifle","SMG","LMG","Marksman Rifle"],a:0},
+{q:"The map Crash originally came from which game?",o:["Call of Duty 4: Modern Warfare","Black Ops II","Modern Warfare 3","Ghosts"],a:0},
+{q:"The map Nuketown originally came from which game?",o:["Black Ops","Modern Warfare 2","World at War","Advanced Warfare"],a:0},
+{q:"The KRM-262 belongs to which weapon category?",o:["Shotgun","Assault Rifle","Pistol","SMG"],a:0},
+{q:"The Purifier Operator Skill is which type of weapon?",o:["Flamethrower","Rocket launcher","Riot shield","Drone"],a:0}
+];
+const L=[[90,"Legendary Pro","You are a true CODM master."],[70,"Grandmaster","Outstanding skill."],[50,"Elite","Solid knowledge. A bit more practice."],[30,"Veteran","Decent start. Keep learning."],[0,"Rookie","Hit the training grounds and try again."]];
+const $=id=>document.getElementById(id);
+let i=0,s=0,t,tl,done,log=[],Qs;
+const shuffle=a=>{for(let j=a.length-1;j>0;j--){const k=Math.random()*(j+1)|0;[a[j],a[k]]=[a[k],a[j]]}return a};
+const ph=n=>"data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='620' height='190' viewBox='0 0 620 190'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#1b1b1f'/><stop offset='1' stop-color='#09090a'/></linearGradient></defs><rect width='620' height='190' fill='url(#g)'/><g stroke='#ffb400' stroke-width='2' fill='none' opacity='.9'><circle cx='310' cy='95' r='38'/><circle cx='310' cy='95' r='4' fill='#ffb400'/><path d='M310 40v30M310 120v30M255 95h30M335 95h30'/></g><text x='20' y='34' fill='#ffb400' font-family='Arial' font-weight='900' font-size='15' letter-spacing='4'>CODM // TARGET ${String(n).padStart(2,"0")}</text></svg>`);
+
+$("go").onclick=()=>{Qs=Q.map((x,n)=>({...x,n,opts:shuffle(x.o.map((v,k)=>({v,c:k===x.a})))}));$("start").classList.add("hide");$("quiz").classList.remove("hide");show()};
+
+function show(){
+ done=false;const x=Qs[i];
+ $("no").innerHTML=`Question <b>${i+1}</b>/10`;$("sc").innerHTML=`Score <b>${s*10}</b>`;
+ $("pg").style.width=(i/10*100)+"%";$("q").textContent=x.q;$("nx").classList.add("hide");
+ const im=$("img");im.alt=x.q;im.onerror=()=>{im.onerror=null;im.src=ph(x.n+1)};im.src=`images/q${x.n+1}.jpg`;
+ $("opts").innerHTML="";
+ x.opts.forEach(o=>{const b=document.createElement("button");b.className="opt";b.textContent=o.v;b.onclick=()=>pick(b,o.c);$("opts").appendChild(b)});
+ tl=20;$("tm").innerHTML=`Time <b>${tl}</b>`;clearInterval(t);
+ t=setInterval(()=>{$("tm").innerHTML=`Time <b>${--tl}</b>`;if(tl<=0)pick(null,false)},1000);
+}
+
+function pick(b,c){
+ if(done)return;done=true;clearInterval(t);
+ const x=Qs[i];
+ document.querySelectorAll(".opt").forEach((e,k)=>{e.disabled=true;if(x.opts[k].c)e.classList.add("ok")});
+ if(b&&!c)b.classList.add("bad");
+ if(c)s++;
+ log.push({q:x.q,ok:c,a:x.opts.find(o=>o.c).v});
+ $("sc").innerHTML=`Score <b>${s*10}</b>`;
+ $("nx").textContent=i<9?"Next":"Finish";$("nx").classList.remove("hide");
+}
+
+$("nx").onclick=()=>{if(++i<10)show();else finish()};
+
+function finish(){
+ $("quiz").classList.add("hide");$("end").classList.remove("hide");
+ const p=s*10,l=L.find(v=>p>=v[0]);
+ $("noob").style.display=p<50?"block":"none";
+ $("fs").textContent=p;$("lv").textContent="Skill: "+l[1];
+ $("ds").textContent=`${l[2]} (${s}/10 correct)`;
+ $("rv").innerHTML=log.map((r,n)=>`<div><span class="${r.ok?"v":"x"}">${r.ok?"CORRECT":"WRONG"}</span> Q${n+1}: ${r.q}${r.ok?"":" Answer: <b>"+r.a+"</b>"}</div>`).join("");
+}
+</script>
+</body>
+</html>
